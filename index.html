@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RS FASHION | Best Online Shopping</title>
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* ================= CSS SECTION (আপনার দেওয়া কোড অনুযায়ী) ================= */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    body { background-color: #f8f9fa; color: #333; overflow-x: hidden; }
+
+    .header { background: #fff; padding: 15px 10px; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+    .container { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 1200px; margin: 0 auto; }
+    .logo img { height: 40px; cursor: pointer; }
+    .header-top { display: flex; width: 100%; justify-content: space-between; align-items: center; }
+    .menu-toggle { font-size: 24px; cursor: pointer; color: #333; padding: 5px; }
+
+    .search-box { display: flex; width: 100%; max-width: 600px; margin-top: 5px; }
+    .search-box input { flex: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 25px 0 0 25px; outline: none; font-size: 14px; }
+    .search-box button { padding: 10px 20px; background: #ff3d00; color: #fff; border: none; border-radius: 0 25px 25px 0; cursor: pointer; font-weight: bold; }
+    
+    .cart { font-size: 22px; position: relative; cursor: pointer; text-decoration: none; color: #333; margin-right: 10px; }
+    .cart-count { background: #ff3d00; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; position: absolute; top: -5px; right: -10px; font-weight: bold; border: 2px solid #fff; }
+
+    /* Sidebar Styling */
+    .sidebar { position: fixed; top: 0; left: -300px; width: 300px; height: 100%; background: #fff; box-shadow: 5px 0 15px rgba(0,0,0,0.1); z-index: 1001; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); padding-top: 20px; }
+    .sidebar.active { left: 0; }
+    .sidebar-header { display: flex; justify-content: space-between; align-items: center; padding: 0 20px 20px; border-bottom: 1px solid #f0f0f0; }
+    .close-btn { font-size: 30px; cursor: pointer; color: #888; }
+    
+    .user-profile-section { padding: 20px; background: #fffcfb; border-bottom: 1px solid #eee; }
+    .user-name { font-weight: bold; font-size: 16px; display: block; }
+    .user-id { font-size: 12px; color: #ff3d00; background: #fff0eb; padding: 2px 8px; border-radius: 10px; margin-top: 5px; display: inline-block; }
+
+    .sidebar-menu { list-style: none; padding: 10px 0; }
+    .sidebar-menu li a { text-decoration: none; color: #444; font-size: 15px; display: block; padding: 15px 25px; transition: 0.2s; border-left: 4px solid transparent; }
+    .sidebar-menu li a:hover { background: #fff5f2; color: #ff3d00; border-left-color: #ff3d00; }
+    .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 1000; backdrop-filter: blur(2px); }
+    .overlay.active { display: block; }
+
+    /* ================= BANNER SLIDER SECTION (New) ================= */
+    .hero-slider { position: relative; width: 100%; max-width: 1200px; margin: 15px auto; height: 200px; overflow: hidden; border-radius: 12px; }
+    .slides { display: flex; transition: 0.5s ease-in-out; height: 100%; }
+    .slide { min-width: 100%; height: 100%; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; }
+    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; padding: 10px; cursor: pointer; border-radius: 50%; }
+    .prev { left: 10px; } .next { right: 10px; }
+
+    /* Categories */
+    .category-list { display: flex; gap: 15px; overflow-x: auto; padding: 20px 15px; scroll-behavior: smooth; background: #fff; }
+    .category-list::-webkit-scrollbar { display: none; }
+    .category-item { min-width: 80px; text-align: center; text-decoration: none; color: #333; transition: 0.3s; }
+    .category-item:hover { transform: scale(1.05); }
+    .category-item img { width: 55px; height: 55px; border-radius: 50%; background: #f9f9f9; padding: 10px; margin-bottom: 8px; border: 1px solid #eee; }
+    .category-item span { font-size: 12px; font-weight: 500; }
+
+    /* Product Grid */
+    .product-section { padding: 20px 15px; max-width: 1200px; margin: 0 auto; }
+    .section-title { font-size: 20px; margin-bottom: 20px; font-weight: bold; position: relative; padding-left: 15px; }
+    .section-title::before { content: ''; position: absolute; left: 0; top: 0; width: 5px; height: 100%; background: #ff3d00; border-radius: 10px; }
+    
+    .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .product-card { background: #fff; padding: 12px; border-radius: 12px; position: relative; border: 1px solid #f0f0f0; transition: 0.3s; display: flex; flex-direction: column; cursor: pointer; }
+    .product-card:hover { box-shadow: 0 10px 20px rgba(0,0,0,0.08); transform: translateY(-5px); }
+    .discount { position: absolute; top: 10px; left: 10px; background: #ff3d00; color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 5px; z-index: 1; font-weight: bold; }
+    .product-card img { width: 100%; height: 150px; object-fit: contain; margin-bottom: 10px; }
+    .product-title { font-size: 14px; color: #333; height: 38px; overflow: hidden; margin-bottom: 8px; line-height: 1.4; font-weight: 600; }
+    .price { margin-bottom: 12px; }
+    .new-price { color: #ff3d00; font-weight: 800; font-size: 16px; }
+    .old-price { text-decoration: line-through; color: #999; font-size: 13px; margin-left: 6px; }
+    
+    .buy-btn { width: 100%; background: #ff3d00; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 13px; }
+    .buy-btn:hover { background: #e63700; }
+
+    @media (min-width: 768px) {
+      .header-top { width: auto; gap: 40px; }
+      .container { flex-direction: row; justify-content: space-between; }
+      .product-grid { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+      .product-card img { height: 200px; }
+      .hero-slider { height: 350px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+      <img src="images/logo.png" height="30" alt="Logo">
+      <span class="close-btn" id="closeMenu">&times;</span>
+  </div>
+
+  <div class="user-profile-section" id="userArea" style="display:none;">
+      <span class="user-name" id="sideUserName">Loading...</span>
+      <span class="user-id" id="sideUserId">ID: ----</span>
+  </div>
+
+  <ul class="sidebar-menu">
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="product-details.html">🛍️ Shop Now</a></li>
+    <li><a href="wishlist.html">❤️ My Wishlist</a></li>
+    <li id="dashLink" style="display:none;"><a href="#" id="dynamicDashBtn" style="color:#ff3d00; font-weight:bold;">🚀 My Dashboard</a></li>
+    <hr style="border:0; border-top:1px solid #eee; margin:10px 0;">
+    <li id="loginMenu"><a href="login.html">🔑 Login / Signup</a></li>
+    <li id="logoutMenu" style="display:none;"><a href="#" onclick="handleLogout()" style="color:red;">🚪 Logout</a></li>
+  </ul>
+</nav>
+
+<header class="header">
+  <div class="container">
+    <div class="header-top">
+        <div class="menu-toggle" id="openMenu">☰</div>
+        <div class="logo"><img src="images/logo.png" alt="RS FASHION"></div>
+        <a href="cart.html" class="cart">🛒 <b id="cartCount" class="cart-count">0</b></a>
+    </div>
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search for fashion, electronics...">
+      <button onclick="handleSearch()">Search</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero-slider">
+  <div class="slides" id="slides">
+    <div class="slide"><img src="images/banner1.jpg" alt="Offer 1"></div>
+    <div class="slide"><img src="images/banner2.jpg" alt="Offer 2"></div>
+    <div class="slide"><img src="images/banner3.jpg" alt="Offer 3"></div>
+  </div>
+  <button class="slider-btn prev" onclick="moveSlide(-1)">❮</button>
+  <button class="slider-btn next" onclick="moveSlide(1)">❯</button>
+</section>
+
+<section class="categories-section">
+  <div class="category-list">
+    <a href="#" class="category-item"><img src="images/cat-fashion.png" alt=""><span>Fashion</span></a>
+    <a href="#" class="category-item"><img src="images/cat-gadgets.png" alt=""><span>Gadgets</span></a>
+    <a href="#" class="category-item"><img src="images/cat-home.png" alt=""><span>Home</span></a>
+    <a href="#" class="category-item"><img src="images/cat-beauty.png" alt=""><span>Beauty</span></a>
+    <a href="#" class="category-item"><img src="images/cat-sports.png" alt=""><span>Sports</span></a>
+  </div>
+</section>
+
+<section class="product-section">
+  <h2 class="section-title">New Arrivals</h2>
+  <div id="productGrid" class="product-grid">
+    </div>
+</section>
+
+<script>
+    // 1. Sidebar Control
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    openMenu.onclick = () => { sidebar.classList.add('active'); overlay.classList.add('active'); };
+    closeMenu.onclick = () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); };
+    overlay.onclick = () => { sidebar.classList.remove('active'); overlay.classList.remove('active'); };
+
+    // 2. Banner Slider Logic
+    let slideIndex = 0;
+    function moveSlide(step) {
+        const slides = document.getElementById('slides');
+        const totalSlides = document.querySelectorAll('.slide').length;
+        slideIndex = (slideIndex + step + totalSlides) % totalSlides;
+        slides.style.transform = `translateX(-${slideIndex * 100}%)`;
+    }
+    // Auto Slide
+    setInterval(() => moveSlide(1), 5000);
+
+    // 3. Product Data (এটি আলাদা products.js ফাইলে থাকলে ভালো হয়, নাহলে এখানেও কাজ করবে)
+    const products = [
+        { id: 1, name: "Premium Embroidered Silk Panjabi", price: 2250, oldPrice: 3000, img: "images/p1.jpg", discount: "25%" },
+        { id: 2, name: "T900 Ultra Smart Watch - Series 8", price: 1800, oldPrice: 2000, img: "images/p2.jpg", discount: "10%" },
+        { id: 3, name: "Premium Cotton T-Shirt", price: 450, oldPrice: 600, img: "images/p3.jpg", discount: "20%" },
+        { id: 4, name: "Wireless Bluetooth Earbuds", price: 1200, oldPrice: 1500, img: "images/p4.jpg", discount: "15%" }
+    ];
+
+    function renderProducts(data) {
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = "";
+        data.forEach(p => {
+            grid.innerHTML += `
+                <div class="product-card">
+                    <span class="discount">-${p.discount}</span>
+                    <img src="${p.img}" alt="${p.name}">
+                    <h3 class="product-title">${p.name}</h3>
+                    <div class="price">
+                        <span class="new-price">৳${p.price}</span>
+                        <span class="old-price">৳${p.oldPrice}</span>
+                    </div>
+                    <button class="buy-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+                </div>
+            `;
+        });
+    }
+
+    // 4. Search Logic
+    function handleSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const filtered = products.filter(p => p.name.toLowerCase().includes(query));
+        renderProducts(filtered);
+    }
+
+    // 5. Auth & Session UI Logic
+    window.onload = function() {
+        renderProducts(products); // Initialize products
+        
+        const activeUser = JSON.parse(localStorage.getItem('fk_active_user'));
+        const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+        if(isLoggedIn && activeUser) {
+            document.getElementById('userArea').style.display = 'block';
+            document.getElementById('loginMenu').style.display = 'none';
+            document.getElementById('logoutMenu').style.display = 'block';
+            document.getElementById('dashLink').style.display = 'block';
+            
+            document.getElementById('sideUserName').innerText = activeUser.name;
+            document.getElementById('sideUserId').innerText = "ID: " + activeUser.id;
+
+            const dashBtn = document.getElementById('dynamicDashBtn');
+            if(activeUser.type === 'super-admin') {
+                dashBtn.href = 'dashboards/super-admin/system-settings.html';
+            } else if(activeUser.type === 'seller') {
+                dashBtn.href = 'dashboards/seller/inventory.html';
+            } else {
+                dashBtn.href = 'dashboards/user-profile/smart-address.html';
+            }
+        }
+    };
+
+    function handleLogout() {
+        if(confirm("Are you sure you want to logout?")) {
+            localStorage.removeItem('fk_active_user');
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userRole');
+            window.location.reload();
+        }
+    }
+
+    // 6. Cart Placeholder
+    let cartCount = 0;
+    function addToCart(id) {
+        cartCount++;
+        document.getElementById('cartCount').innerText = cartCount;
+        alert("Product added to cart!");
+    }
+</script>
+
+<script src="data/products.js"></script>
+<script src="assets/core/core.js"></script>
+<script src="assets/js/menu-logic.js"></script>
+
+</body>
+</html>

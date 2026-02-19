@@ -1,0 +1,38 @@
+/* Global Styles */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background-color: #f8f9fa; color: #333; overflow-x: hidden; }
+
+/* Header & Search */
+.header { background: #fff; padding: 15px 10px; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.container { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 1200px; margin: 0 auto; }
+.header-top { display: flex; width: 100%; justify-content: space-between; align-items: center; }
+.logo img { height: 40px; cursor: pointer; }
+.search-box { display: flex; width: 100%; max-width: 600px; margin-top: 5px; }
+.search-box input { flex: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 25px 0 0 25px; outline: none; }
+.search-box button { padding: 10px 20px; background: #ff3d00; color: #fff; border: none; border-radius: 0 25px 25px 0; cursor: pointer; font-weight: bold; }
+
+/* Cart Badge */
+.cart { font-size: 22px; position: relative; text-decoration: none; color: #333; }
+.cart-count { background: #ff3d00; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 50%; position: absolute; top: -5px; right: -10px; border: 2px solid #fff; }
+
+/* Hero Slider */
+.hero-slider { position: relative; width: 100%; max-width: 1200px; margin: 15px auto; height: 200px; overflow: hidden; border-radius: 12px; }
+.slides { display: flex; transition: 0.5s ease-in-out; height: 100%; }
+.slide { min-width: 100%; height: 100%; }
+.slide img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Product Grid */
+.product-section { padding: 20px 15px; max-width: 1200px; margin: 0 auto; }
+.product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+.product-card { background: #fff; padding: 12px; border-radius: 12px; border: 1px solid #f0f0f0; transition: 0.3s; position: relative; display: flex; flex-direction: column; }
+.product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+.product-card img { width: 100%; height: 150px; object-fit: contain; }
+.new-price { color: #ff3d00; font-weight: bold; font-size: 16px; }
+.buy-btn { width: 100%; background: #ff3d00; color: #fff; border: none; padding: 10px; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+
+/* Tablet & Desktop */
+@media (min-width: 768px) {
+    .container { flex-direction: row; justify-content: space-between; }
+    .product-grid { grid-template-columns: repeat(4, 1fr); }
+    .hero-slider { height: 350px; }
+}
